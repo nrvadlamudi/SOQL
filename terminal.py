@@ -82,7 +82,7 @@ class Terminal(wx.Frame):
         if user_choice == "Inline Comment":
             user_input = obfuscator.ManipulateInput_Inline(user_input)
         elif user_choice == "Double URL Encoding":
-            user_input = obfuscator.ManipulateInput_DoubleURL(user_input)
+            user_input = obfuscator.ManipulateInput_URL(user_input)
         elif user_choice == "Invalid Percent Encoding":
             user_input = obfuscator.ManipulateInput_Percent(user_input)
         elif user_choice == "Nesting Expressions":
