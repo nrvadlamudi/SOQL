@@ -77,8 +77,35 @@ def ManipulateInput_Percent(user_input):
     return user_input
 
 
+def to_hex(string):
+    return "".join([hex(ord(c))[2:] for c in string])
+
+
 def ManipulateInput_URL(user_input):
-    return None
+    # for each word in the user input, split each word into characters
+    # generate a random number between 1 and len(listofchr)
+    # replace random character with % + hex value of character for random number of characters
+    user_input = user_input.lower()
+    words = user_input.split()
+    for word in words:
+        # split word into list of characters
+        listofchr = [char for char in word]
+        random_subs = random.randint(1, len(listofchr))
+        index_list = []
+        for i in range(random_subs):
+            random_index = random.randint(0, len(listofchr) - 1)
+            while random_index in index_list:
+                random_index = random.randint(0, len(listofchr) - 1)
+            index_list.append(random_index)
+
+            listofchr[random_index] = "%" + to_hex(listofchr[random_index])
+        # join the list back into a string
+        newword = "".join(listofchr)
+        # replace the word with the new word
+        result = re.compile(re.escape(word.lower()), re.IGNORECASE)
+        user_input = result.sub(newword, user_input)
+
+    return user_input
 
 
 def ManipulateInput_Nesting(user_input):
