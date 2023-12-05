@@ -52,8 +52,8 @@ def ManipulateInput_Inline(string):
                         newword += "/**/"
                     newword += c
 
-                resault = re.compile(re.escape(word.lower()), re.IGNORECASE)
-                string = resault.sub(newword, string, 1)
+                result = re.compile(re.escape(word.lower()), re.IGNORECASE)
+                string = result.sub(newword, string, 1)
     return string
 
 
@@ -71,8 +71,8 @@ def ManipulateInput_Percent(user_input):
         # join the list back into a string
         newword = "".join(listofchr)
         # replace the word with the new word
-        resault = re.compile(re.escape(word.lower()), re.IGNORECASE)
-        user_input = resault.sub(newword, user_input)
+        result = re.compile(re.escape(word.lower()), re.IGNORECASE)
+        user_input = result.sub(newword, user_input)
 
     return user_input
 
@@ -127,6 +127,11 @@ def ManipulateInput_Nesting(user_input):
             # join the list back into a string
             newword = "".join(listofchr)
             # replace the word with the new word
-            resault = re.compile(re.escape(word.lower()), re.IGNORECASE)
-            user_input = resault.sub(newword, user_input)
+            result = re.compile(re.escape(word.lower()), re.IGNORECASE)
+            user_input = result.sub(newword, user_input)
     return user_input
+
+    def ManipulateInput_Overflow(user_input):
+        # obfuscate the user input by adding a high random number of characters to the statement
+        # WAFS can crash when we add about 1000 characters to the statement
+        
