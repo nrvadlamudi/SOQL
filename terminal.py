@@ -39,6 +39,7 @@ class Terminal(wx.Frame):
                 "Double URL Encoding",
                 "Invalid Percent Encoding",
                 "Nesting Expressions",
+                "Buffer Overflow",
             ],
         )
         hbox5.Add(self.drp, proportion=1)
@@ -87,13 +88,17 @@ class Terminal(wx.Frame):
             user_input = obfuscator.ManipulateInput_Percent(user_input)
         elif user_choice == "Nesting Expressions":
             user_input = obfuscator.ManipulateInput_Nesting(user_input)
+        elif user_choice == "Buffer Overflow":
+            user_input = obfuscator.ManipulateInput_Overflow(user_input)
         self.txt2.SetValue(user_input)
 
     def OnClose(self, e):
         self.Close(True)
 
     def OnCopy(self, e):
-        self.txt2.Copy()
+        if wx.TheClipboard.Open():
+            wx.TheClipboard.SetData(wx.TextDataObject(self.txt2.GetValue()))
+            wx.TheClipboard.Close()
 
     def OnChoice(self, e):
         choice = self.drp.GetString(self.drp.GetSelection())
@@ -101,5 +106,5 @@ class Terminal(wx.Frame):
 
 if __name__ == "__main__":
     app = wx.App()
-    Terminal(None, title="Terminal")
+    Terminal(None, title="SQL Obfuscator")
     app.MainLoop()

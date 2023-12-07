@@ -131,7 +131,17 @@ def ManipulateInput_Nesting(user_input):
             user_input = result.sub(newword, user_input)
     return user_input
 
-    def ManipulateInput_Overflow(user_input):
-        # obfuscate the user input by adding a high random number of characters to the statement
-        # WAFS can crash when we add about 1000 characters to the statement
-        
+
+def ManipulateInput_Overflow(user_input):
+    # obfuscate the user input by adding a high random number of characters to the statement
+    # WAFS can crash when we add about 1000 characters to the statement
+    # generate a random number between 1000 and 1500
+    # generate a random string of that length
+    # add the string to the user input
+    # return the user input
+    randomnumber = random.randint(1000, 1500)
+    randomstring = "".join(
+        random.choice(string.ascii_letters) for i in range(randomnumber)
+    )
+    user_input = user_input + randomstring
+    return user_input
