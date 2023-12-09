@@ -13,7 +13,7 @@ conn = pyodbc.connect(
 cursor = conn.cursor()
 
 # Execute an obfuscated sql query
-cursor.execute("SELECT/**//**/*FROM/**********/[Person.vPasswordInfo]--")
+cursor.execute("SELECT * FROM Person.Person")
 
 # Fetch the data
 for row in cursor:
