@@ -1,5 +1,3 @@
-# Create command line interface (CLI)
-
 import sys
 import wx
 import obfuscator
