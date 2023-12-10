@@ -38,6 +38,10 @@ commands = [
 ]
 
 
+def Hello():
+    print("Hello from obfuscator.py")
+
+
 def ManipulateInput_Inline(string):
     # Obfuscate user input
     print(string.lower())
@@ -85,6 +89,9 @@ def to_hex(string):
     return "".join([hex(ord(c))[2:] for c in string])
 
 
+bad_escape_substitutions = ["\%5c", "%5c%5c"]
+
+
 def ManipulateInput_URL(user_input):
     # for each word in the user input, split each word into characters
     # generate a random number between 1 and len(listofchr)
@@ -105,8 +112,11 @@ def ManipulateInput_URL(user_input):
             listofchr[random_index] = "%" + to_hex(listofchr[random_index])
         # join the list back into a string
         newword = "".join(listofchr)
+        if newword.endswith("\\"):
+            newword = "%5c"
         # replace the word with the new word
         result = re.compile(re.escape(word.lower()), re.IGNORECASE)
+        # if newword results in a bad escape sequence, substitute with a random bad escape sequence
         user_input = result.sub(newword, user_input)
 
     return user_input
