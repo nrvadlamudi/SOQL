@@ -10,6 +10,9 @@ commands = [
     "insert",
     "into",
     "values",
+    "union",
+    " union",
+    "union ",
     "update",
     "set",
     "delete",
@@ -37,6 +40,7 @@ commands = [
 
 def ManipulateInput_Inline(string):
     # Obfuscate user input
+    print(string.lower())
     for word in commands:
         if word in string.lower():
             #  find all that match the sql command
