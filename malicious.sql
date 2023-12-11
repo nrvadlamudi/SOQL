@@ -1,3 +1,0 @@
-SELECT * FROM Person.Password WHERE 'Id' = 1 OR 'a' = 'a';
-SELECT * FROM INFORMATION_SCHEMA.TABLES;
-SELECT PersonType FROM Person.Person WHERE FirstName = '' UNION SELECT @@VERSION;
